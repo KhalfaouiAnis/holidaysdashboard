@@ -1,4 +1,6 @@
+import { AxiosError, isAxiosError } from "axios";
 import { clsx, type ClassValue } from "clsx";
+import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -39,4 +41,15 @@ export function formatCurrency(
   };
 
   return new Intl.NumberFormat(locale, formatOptions).format(amount);
+}
+
+export function handleError(error: unknown) {
+  const err = error as Error | AxiosError;
+  if (isAxiosError(err)) {
+    const message = err?.response?.data?.message ? err?.response?.data?.message : err?.response?.data;
+    toast.error(message);
+  } else {
+    toast.error(err.message);
+    console.debug(err);
+  }
 }

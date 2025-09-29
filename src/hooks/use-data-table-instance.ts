@@ -1,10 +1,5 @@
-import * as React from "react";
-
 import {
   ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   getCoreRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
@@ -13,50 +8,54 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type UseDataTableInstanceProps<TData, TValue> = {
   data: TData[];
   columns: ColumnDef<TData, TValue>[];
   enableRowSelection?: boolean;
+  getRowId?: (row: TData, index: number) => string;
+  totalPages?: number;
+  setPage: Dispatch<SetStateAction<number>>;
+  page: number;
   defaultPageIndex?: number;
   defaultPageSize?: number;
-  getRowId?: (row: TData, index: number) => string;
+  pageSize: number;
+  manualPagination?: boolean;
 };
 
 export function useDataTableInstance<TData, TValue>({
   data,
   columns,
   enableRowSelection = true,
-  defaultPageIndex,
-  defaultPageSize,
   getRowId,
+  pageSize,
+  setPage,
+  page,
+  totalPages,
+  manualPagination = true,
 }: UseDataTableInstanceProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({});
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [pagination, setPagination] = React.useState({
-    pageIndex: defaultPageIndex ?? 0,
-    pageSize: defaultPageSize ?? 10,
-  });
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
     columns,
+    manualPagination,
+    pageCount: totalPages || 1,
     state: {
-      sorting,
-      columnVisibility,
       rowSelection,
-      columnFilters,
-      pagination,
+      pagination: {
+        pageIndex: page - 1,
+        pageSize,
+      },
     },
     enableRowSelection,
     getRowId: getRowId ?? ((row) => (row as any).id.toString()),
     onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    onColumnVisibilityChange: setColumnVisibility,
-    onPaginationChange: setPagination,
+    onPaginationChange: (updater) => {
+      const newState = typeof updater === "function" ? updater(table.getState().pagination) : updater;
+      setPage(newState.pageIndex + 1);
+    },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),

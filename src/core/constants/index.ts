@@ -9,3 +9,10 @@ export const queryKeys = {
   FEATURED_PROPERTIES: ["FEATURED_PROPERTIES", PAGE_SIZE],
   USERS: ["USERS", PAGE_SIZE],
 };
+
+export const AMENITIES = [
+  { value: "WiFi", label: "WiFi" },
+  { value: "Kitchen", label: "Kitchen" },
+  { value: "Free parking", label: "Free parking" },
+  { value: "Pool", label: "Pool" },
+];

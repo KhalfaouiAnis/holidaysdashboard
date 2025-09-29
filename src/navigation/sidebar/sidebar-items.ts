@@ -1,13 +1,10 @@
 import {
-  Mail,
-  MessageSquare,
+  Hotel,
   Calendar,
   ReceiptText,
   Users,
   Lock,
-  Fingerprint,
   LayoutDashboard,
-  ChartBar,
   Banknote,
   type LucideIcon,
 } from "lucide-react";
@@ -59,22 +56,9 @@ export const sidebarItems: NavGroup[] = [
     label: "Management",
     items: [
       {
-        title: "Chat",
-        url: "/dashboard/coming-soon",
-        icon: MessageSquare,
-        comingSoon: true,
-      },
-      {
-        title: "Calendar",
-        url: "/dashboard/coming-soon",
-        icon: Calendar,
-        comingSoon: true,
-      },
-      {
-        title: "Invoice",
-        url: "/dashboard/coming-soon",
-        icon: ReceiptText,
-        comingSoon: true,
+        title: "Property",
+        url: "/dashboard/property",
+        icon: Hotel,
       },
       {
         title: "Users",
@@ -87,7 +71,7 @@ export const sidebarItems: NavGroup[] = [
         url: "/dashboard/coming-soon",
         icon: Lock,
         comingSoon: true,
-      }
+      },
     ],
   },
 ];

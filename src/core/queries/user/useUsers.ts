@@ -4,12 +4,12 @@ import { PAGE_SIZE, queryKeys } from "@/core/constants";
 import { listUsers } from "@/server/user/user-actions";
 import { useQuery } from "@tanstack/react-query";
 
-type PropertiesOptions = {
+type FetchUserQueryOptions = {
   page: number;
   pageSize?: number;
 };
 
-const useUsers = ({ page, pageSize }: PropertiesOptions) => {
+const useUsers = ({ page, pageSize }: FetchUserQueryOptions) => {
   const { data, status, isRefetching, isLoading, isPending, error, refetch } = useQuery({
     queryKey: queryKeys.USERS,
     queryFn: () =>
