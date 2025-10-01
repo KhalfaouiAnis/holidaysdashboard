@@ -1,0 +1,29 @@
+{
+  "AUTH": {
+    "title": "العطل",
+    "subTitle": "لوحة إدارة المشرف",
+    "LOGIN_FORM": {
+      "login": "تسجيل الدخول",
+      "welcomeBack": "أهلاً بك مجدداً. أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول.",
+      "noAccount": "ليس لديك حساب؟",
+      "register": "تسجيل",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "rememberMe": "تذكرني لمدة 30 يومًا",
+      "loadingText": "تحميل...",
+      "loginBtnLabel": "تسجيل الدخول"
+    },
+    "REGISTER_FORM": {
+      "register": "تسجيل",
+      "createAccount": "قم بملء النموذج أدناه لإنشاء حسابك.",
+      "alreadyRegistered": "لديك حساب ؟",
+      "login": "تسجيل الدخول",
+      "name": "اسم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "ConfirmPassword": "تأكيد كلمة المرور",
+      "loadingText": "تحميل...",
+      "registerBtnLabel": "إرسال"
+    }
+  }
+}

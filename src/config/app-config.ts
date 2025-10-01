@@ -1,11 +1,9 @@
 import packageJson from "../../package.json";
 
-const currentYear = new Date().getFullYear();
-
 export const APP_CONFIG = {
   name: "Holidays Admin",
   version: packageJson.version,
-  copyright: `© ${currentYear}, Holidays Admin.`,
+  copyright: `© ${new Date().getFullYear()}, Holidays Admin.`,
   meta: {
     title: "Holidays Admin - Admin dashboard to manage holidays application",
     description:

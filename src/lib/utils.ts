@@ -43,7 +43,7 @@ export function formatCurrency(
   return new Intl.NumberFormat(locale, formatOptions).format(amount);
 }
 
-export function handleError(error: unknown) {
+export function handleClientError(error: unknown) {
   const err = error as Error | AxiosError;
   if (isAxiosError(err)) {
     const message = err?.response?.data?.message ? err?.response?.data?.message : err?.response?.data;
@@ -51,5 +51,16 @@ export function handleError(error: unknown) {
   } else {
     toast.error(err.message);
     console.debug(err);
+  }
+}
+
+export function handleServerError(error: unknown) {
+  if (isAxiosError(error)) {
+    const message = error.response?.data?.message || error.message;
+    const status = error.response?.status || 500;
+
+    const err = new Error(message);
+    (err as any).status = status;
+    throw err;
   }
 }

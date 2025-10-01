@@ -14,26 +14,28 @@ type UseDataTableInstanceProps<TData, TValue> = {
   data: TData[];
   columns: ColumnDef<TData, TValue>[];
   enableRowSelection?: boolean;
-  getRowId?: (row: TData, index: number) => string;
   totalPages?: number;
-  setPage: Dispatch<SetStateAction<number>>;
   page: number;
   defaultPageIndex?: number;
   defaultPageSize?: number;
   pageSize: number;
   manualPagination?: boolean;
+  getRowId?: (row: TData, index: number) => string;
+  setPage: Dispatch<SetStateAction<number>>;
+  setPageSize: Dispatch<SetStateAction<number>>;
 };
 
 export function useDataTableInstance<TData, TValue>({
   data,
   columns,
   enableRowSelection = true,
-  getRowId,
   pageSize,
-  setPage,
   page,
   totalPages,
   manualPagination = true,
+  getRowId,
+  setPage,
+  setPageSize
 }: UseDataTableInstanceProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
 
@@ -55,6 +57,7 @@ export function useDataTableInstance<TData, TValue>({
     onPaginationChange: (updater) => {
       const newState = typeof updater === "function" ? updater(table.getState().pagination) : updater;
       setPage(newState.pageIndex + 1);
+      setPageSize(newState.pageSize)
     },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),

@@ -4,6 +4,7 @@ import { ChevronRight, ChevronsRight, ChevronLeft, ChevronsLeft } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ROWS_PER_PAGE } from "@/core/constants";
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
@@ -30,7 +31,7 @@ export function DataTablePagination<TData>({ table }: DataTablePaginationProps<T
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              {[10, 20, 30, 40, 50].map((pageSize) => (
+              {ROWS_PER_PAGE.map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>

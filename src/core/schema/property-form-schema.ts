@@ -25,7 +25,13 @@ export const PropertyFormSchema = z.object({
   is_featured: z.optional(z.boolean()),
 });
 
-export const PropertyFormDefaultValues: PropertyFormType = {
+export type PropertyFormType = z.infer<typeof PropertyFormSchema>;
+
+export type PropertyFormInput = Omit<PropertyFormType, "images"> & {
+  images: string;
+};
+
+export const PropertyFormDefaultValues: PropertyFormInput = {
   name: "",
   description: "",
   price_per_night: 0,
@@ -33,7 +39,7 @@ export const PropertyFormDefaultValues: PropertyFormType = {
   city: "",
   country: "",
   capacity: 0,
-  images: [""],
+  images: "",
   amenities: "",
   longitude: 0,
   latitude: 0,
@@ -41,5 +47,3 @@ export const PropertyFormDefaultValues: PropertyFormType = {
   latitude_delta: 0,
   is_featured: false,
 };
-
-export type PropertyFormType = z.infer<typeof PropertyFormSchema>;

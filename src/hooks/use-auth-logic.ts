@@ -1,17 +1,17 @@
-import { AxiosError, isAxiosError } from "axios";
 import { toast } from "sonner";
-
 import { LoginFormSchema, LoginFormType, SignupFormSchema, SignupFormType } from "@/core/schema/auth-form-schema";
 import useAuth from "@/stores/auth/auth";
 import { client } from "@/core/api/client";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { attemptLogin } from "@/server/user/auth";
+import { useRouter } from "@/i18n/navigation";
+import { handleClientError } from "@/lib/utils";
 
 export const useSignUpLogic = () => {
   const { signIn, setUser } = useAuth();
   const router = useRouter();
+
   const form = useForm<SignupFormType>({
     resolver: zodResolver(SignupFormSchema),
     defaultValues: {
@@ -31,17 +31,10 @@ export const useSignUpLogic = () => {
       setUser(data.user);
       signIn(data.token);
 
-      router.push("/");
+      router.push("/dashboard/home");
       toast.success("Welcome to holidays!");
     } catch (error) {
-      const err = error as Error | AxiosError;
-      if (isAxiosError(err)) {
-        const message = err?.response?.data?.message ? err?.response?.data?.message : err?.response?.data;
-        toast.error(message);
-      } else {
-        toast.error(err.message);
-        console.debug(err);
-      }
+      handleClientError(error);
     }
   };
 
@@ -63,18 +56,12 @@ export const useLoginLogic = () => {
 
   const handleLogin = async (values: LoginFormType) => {
     try {
-      const { token, user } = await attemptLogin(values)
+      const { token, user } = await attemptLogin(values);
       setUser(user);
       signIn(token);
-      router.push("/");
+      router.push("/dashboard/home");
     } catch (error) {
-      const err = error as Error | AxiosError;
-      if (isAxiosError(err)) {
-        const message = err?.response?.data?.message ? err?.response?.data?.message : err?.response?.data;
-        toast.error(message);
-      } else {
-        toast.error(err.message);
-      }
+      handleClientError(error);
     }
   };
 

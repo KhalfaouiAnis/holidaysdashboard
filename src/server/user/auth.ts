@@ -1,11 +1,12 @@
 "use server";
 
 import { LoginFormType } from "@/core/schema/auth-form-schema";
+import { handleServerError } from "@/lib/utils";
 import axios from "axios";
 import { cookies } from "next/headers";
 
 export async function getCookieAuthToken() {
-  return (await cookies()).get('auth-token')?.value || null;
+  return (await cookies()).get("auth-token")?.value || null;
 }
 
 export async function attemptLogin({ email, password }: LoginFormType) {
@@ -27,8 +28,8 @@ export async function attemptLogin({ email, password }: LoginFormType) {
 
     return { token, user };
   } catch (error) {
-    console.error("Login error:", error);
-    return { success: false, error: "Login failed" };
+    handleServerError(error);
+    throw error;
   }
 }
 

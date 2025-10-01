@@ -1,0 +1,29 @@
+{
+  "AUTH": {
+    "title": "Holidays",
+    "subTitle": "Admin management dashboard.",
+    "LOGIN_FORM": {
+      "login": "Login",
+      "welcomeBack": "Welcome back. Enter your email and password to login.",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "email": "Email address",
+      "password": "Password",
+      "rememberMe": "Remember me for 30 days",
+      "loadingText": "Loading...",
+      "loginBtnLabel": "Login"
+    },
+    "REGISTER_FORM": {
+      "register": "Register",
+      "createAccount": "Fill in the below form to create your account.",
+      "alreadyRegistered": "Already have an account?",
+      "login": "Login",
+      "name": "Name",
+      "email": "Email address",
+      "password": "Password",
+      "ConfirmPassword": "Confirm password",
+      "loadingText": "Loading...",
+      "registerBtnLabel": "Submit"
+    }
+  }
+}
