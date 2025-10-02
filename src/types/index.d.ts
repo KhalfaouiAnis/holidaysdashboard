@@ -42,13 +42,13 @@ interface Booking {
   check_in: string;
   check_out: string;
   total_price: number;
-  status: "pending_payment" | "succeeded" | "failed" | string;
+  status: BookingStatus;
+  payment_status: BookingStatus;
   guest_count: number;
   special_requests: string;
   property: Property;
   user: User;
   payment_intent_id: string;
-  payment_status: "pending" | "succeeded" | string;
 }
 
 interface ICartItem {
@@ -76,3 +76,5 @@ type PaginationParams = {
   page: number;
   pageSize: number;
 };
+
+type BookingStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "ACCEPTED" | "SUCCEEDED" | "FAILED";

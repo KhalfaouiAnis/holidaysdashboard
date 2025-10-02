@@ -49,7 +49,7 @@ export const propertyColumns: ColumnDef<Property>[] = [
     header: ({ column }) => <DataTableColumnHeader column={column} title="Images" />,
     cell: ({ row }) => {
       return <div className="flex gap-2">
-        {row.original.images.map((url, idx) => (
+        {row.original.images?.map((url, idx) => (
           <Image key={idx} src={url} alt={`Image ${idx + 1}`} width={32} height={32} className="object-cover rounded-4xl" />
         ))}
       </div>

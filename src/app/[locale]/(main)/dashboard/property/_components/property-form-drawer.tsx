@@ -29,12 +29,12 @@ export function PropertyFormDrawer({ property }: { property?: Property }) {
           }
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="w-[40%]">
+      <DrawerContent style={{ maxWidth: '40vw', padding: '1' }}>
         <DrawerHeader className="gap-1">
           <DrawerTitle>{property ? property.name : "New property"}</DrawerTitle>
           <DrawerDescription>{property ? 'Update property' : 'Create a new property'}</DrawerDescription>
         </DrawerHeader>
-        <ScrollArea className="h-[80vh] w-full rounded-md border p-4">
+        <ScrollArea className="h-[80vh] w-full rounded-lg border p-4">
           <PropertyForm property={property} />
         </ScrollArea>
       </DrawerContent>

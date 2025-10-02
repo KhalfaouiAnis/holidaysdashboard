@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getLocalForAuthMiddleware } from "@/core/utils/routing";
+import { getLocalForAuthMiddleware } from "@/lib/routing";
 
 export function authMiddleware(req: NextRequest) {
   const { pathname } = req.nextUrl;

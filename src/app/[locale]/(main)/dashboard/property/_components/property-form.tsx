@@ -27,7 +27,7 @@ export function PropertyForm({ property }: { property?: Property }) {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(handleAddProperty, onError)} className="space-y-4">
+      <form onSubmit={handleSubmit(handleAddProperty, onError)} className="space-y-4 mt-2">
         <FormField
           control={control}
           name="name"
