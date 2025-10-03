@@ -78,3 +78,19 @@ type PaginationParams = {
 };
 
 type BookingStatus = "IN_PROGRESS" | "CANCELED" | "COMPLETED" | "ACCEPTED" | "SUCCEEDED" | "FAILED";
+
+type BookingStat = {
+  status: BookingStatus;
+  _count: { id: 1 };
+  _sum: { total_price: number };
+};
+
+type BookingCardStat = {
+  title: string;
+  totalRevenue?: number;
+  totalBookings?: number;
+} & {
+  [K in BookingStatus]?: number;
+};
+
+type BookingStats = BookingStat[];

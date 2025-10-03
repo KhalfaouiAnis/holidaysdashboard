@@ -47,7 +47,7 @@ export const bookingColumns: ColumnDef<Booking>[] = [
   {
     accessorKey: "status",
     header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
-    cell: ({ row }) => <BookStatus status={row.original.status} />,
+    cell: ({ row }) => <BookStatus status={row.original.status} id={row.original.id} />,
     enableSorting: false,
   },
   {
